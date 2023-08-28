@@ -65,3 +65,7 @@
 |                                           Unique Paths                                            |      |                                                                                                                                                                         |
 |                                             Jump Game                                             |      |                                                                                                                                                                         |
 |                                            Word Break                                             |      |                                                                                                                                                                         |
+
+### License
+
+This project is under [MIT License](LICENSE)
