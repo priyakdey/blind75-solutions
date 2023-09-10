@@ -13,6 +13,8 @@ public class Trie {
 
     public void insert(String word) {
         if (word.isEmpty()) {
+            // @NOTE: This is a special case where "" is a valid word in the dictionary. Depends on use case.
+            root.isWord = true;
             return;
         }
 
