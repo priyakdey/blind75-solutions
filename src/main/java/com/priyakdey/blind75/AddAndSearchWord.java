@@ -54,30 +54,32 @@ public class AddAndSearchWord {
                 // node should have the same child as the letter, and it should be a word ending
                 int idx = characterToIndex(ch);
                 Node child = node.children[idx];
-                return child != null && child.isWord;
+                anyMatch = child != null && child.isWord;
             } else {
-                return Arrays.stream(node.children)
+                anyMatch = Arrays.stream(node.children)
                     .anyMatch(_node -> _node != null && _node.isWord);
             }
-        }
-
-        if (ch != '.') {
-            // match the exact key and move forward
-            int idx = characterToIndex(ch);
-            Node child = node.children[idx];
-            if (child != null) {
-                anyMatch = search(charArray, index + 1, child);
-            }
         } else {
-            // find all the keys and try for all possible children
-            List<Node> children = Arrays.stream(node.children).filter(Objects::nonNull).toList();
-            for (Node child : children) {
-                if (search(charArray, index + 1, child)) {
-                    anyMatch = true;
-                    break;
+            if (ch != '.') {
+                // match the exact key and move forward
+                int idx = characterToIndex(ch);
+                Node child = node.children[idx];
+                if (child != null) {
+                    anyMatch = search(charArray, index + 1, child);
+                }
+            } else {
+                // find all the keys and try for all possible children
+                List<Node> children =
+                    Arrays.stream(node.children).filter(Objects::nonNull).toList();
+                for (Node child : children) {
+                    if (search(charArray, index + 1, child)) {
+                        anyMatch = true;
+                        break;
+                    }
                 }
             }
         }
+
 
         return anyMatch;
 
@@ -108,18 +110,20 @@ public class AddAndSearchWord {
         addAndSearchWord.addWord("dad");
         addAndSearchWord.addWord("mad");
 
-//        System.out.println(addAndSearchWord.search("pad"));
-//        System.out.println(addAndSearchWord.search("bad"));
-//        System.out.println(addAndSearchWord.search("...d"));
-//        System.out.println(addAndSearchWord.search("b.."));
-//        System.out.println(addAndSearchWord.search(".a."));
-//        System.out.println(addAndSearchWord.search("b.d"));
-//        System.out.println(addAndSearchWord.search("b.d."));
-//        System.out.println(addAndSearchWord.search("b..."));
-//        System.out.println(addAndSearchWord.search("ba."));
+        System.out.println(addAndSearchWord.search("pad"));
+        System.out.println(addAndSearchWord.search("bad"));
+        System.out.println(addAndSearchWord.search("...d"));
         System.out.println(addAndSearchWord.search("b.."));
-//        System.out.println(addAndSearchWord.search("..."));
-//        System.out.println(addAndSearchWord.search(".."));
+        System.out.println(addAndSearchWord.search(".a."));
+        System.out.println(addAndSearchWord.search("b.d"));
+        System.out.println(addAndSearchWord.search("b.d."));
+        System.out.println(addAndSearchWord.search("b..."));
+        System.out.println(addAndSearchWord.search("ba."));
+        System.out.println(addAndSearchWord.search("pa."));
+        System.out.println(addAndSearchWord.search("m.."));
+        System.out.println(addAndSearchWord.search("b.."));
+        System.out.println(addAndSearchWord.search("..."));
+        System.out.println(addAndSearchWord.search(".."));
     }
 
 }
