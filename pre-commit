@@ -1,0 +1,5 @@
+#!/bin/bash
+
+exec 2>&1 
+echo "Running a precheck before commit"
+./gradlew --no-build-cache build
